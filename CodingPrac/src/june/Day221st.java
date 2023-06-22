@@ -13,7 +13,20 @@ skip에 있는 알파벳은 제외하고 건너뜁니다.
 
 public class Day221st {
 	public String solution(String s, String skip, int index) {
-        String answer = "";
-        return answer;
+        StringBuilder answer = new StringBuilder();
+        
+        for (int i = 0 ; i < s.length(); i++) {
+        	char c = s.charAt(i);
+        	
+        	if(skip.indexOf(c) != -1) { // skip 문자열에 포함된 경우.
+        		answer.append(c);
+        	} else { 
+        		int newIndex = (c - 'a' + index) % 26; // index 만큼 뒤로 이동한 새로운 인덱스 계산.
+        		char newChar = (char)('a' + newIndex); // 새로운 문자 계산.
+        		answer.append(newChar);
+        	}
+        }
+        
+        return answer.toString();
     }
 }
